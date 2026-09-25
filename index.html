@@ -2145,15 +2145,13 @@ body.light-mode .recent-chat.active {
 
 <script>
 
+
 /* =====================================================
    API
 ===================================================== */
 
-const API_KEY = "";
-
 const API_URL =
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key="
-    + encodeURIComponent(API_KEY);
+    "https://nexus-ai-backend.liamr9375.workers.dev/";
 
 
 /* =====================================================
@@ -3373,7 +3371,6 @@ function usePrompt(text) {
     sendMessage();
 }
 
-
 /* =====================================================
    SEND MESSAGE
 ===================================================== */
@@ -3389,18 +3386,6 @@ async function sendMessage() {
         input.value.trim();
 
     if (!text) {
-        return;
-    }
-
-    if (
-        API_KEY ===
-        "PASTE_NEW_KEY_HERE"
-    ) {
-
-        alert(
-            "Put your new API key into API_KEY in the code first."
-        );
-
         return;
     }
 
@@ -3452,6 +3437,7 @@ async function sendMessage() {
 
             throw new Error(
                 data?.error?.message ||
+                data?.error ||
                 "The AI service returned an error."
             );
         }
@@ -3520,7 +3506,6 @@ async function sendMessage() {
         saveCurrentChat();
     }
 }
-
 
 /* =====================================================
    ANSWER FORMATTING
